@@ -10,7 +10,8 @@ app.use(cors());
 app.use(express.json()); // Для парсинга JSON
 
 // Подключаемся к базе данных MongoDB
-mongoose.connect("mongodb://localhost:27017/todoapp", { useNewUrlParser: true, useUnifiedTopology: true })
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/todoapp";
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.log("Failed to connect to MongoDB", err));
 
